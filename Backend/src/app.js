@@ -9,17 +9,32 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        "https://interview-iq-1-ojzj.onrender.com"
+    ],
     credentials: true,
-}))
+}));
 
 app.use(
   session({
     secret: process.env.JWT_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: true,
+      sameSite: "none",
+    },
   })
 );
+
+// app.use(
+//   session({
+//     secret: process.env.JWT_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
 
 app.use(passport.initialize());
 app.use(passport.session());
