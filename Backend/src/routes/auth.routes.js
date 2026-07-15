@@ -47,7 +47,7 @@ authRouter.get(
 authRouter.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173",
+   failureRedirect: "https://interview-iq-1-ojzj.onrender.com/login",
     session: false,
   }),
   (req, res) => {
@@ -69,7 +69,7 @@ authRouter.get(
   sameSite: "lax",
 });
 
-    res.redirect("http://localhost:5173/");
+   res.redirect("https://interview-iq-1-ojzj.onrender.com/");
   }
 );
 
