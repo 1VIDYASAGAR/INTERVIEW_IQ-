@@ -63,10 +63,10 @@ authRouter.get(
       }
     );
 
-   res.cookie("token", token, {
+  res.cookie("token", token, {
   httpOnly: true,
-  secure: false,
-  sameSite: "lax",
+  secure: true,
+  sameSite: "none",
 });
 
    res.redirect("https://interview-iq-1-ojzj.onrender.com/");
