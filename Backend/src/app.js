@@ -16,25 +16,7 @@ app.use(cors({
   credentials: true,
 }));
 
-// app.use(
-//   session({
-//     secret: process.env.JWT_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//       secure: true,
-//       sameSite: "none",
-//     },
-//   })
-// );
 
-// app.use(
-//   session({
-//     secret: process.env.JWT_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//   })
-// );
 
 app.use(passport.initialize());
 

@@ -4,11 +4,10 @@ const {zodToJsonSchema} = require("zod-to-json-schema")
 const pdfParse = require("pdf-parse")
 const puppeteer = require("puppeteer-core");
 const chromium = require("@sparticuz/chromium").default;
-console.log("Chromium Object =", chromium);
 const  ai = new GoogleGenAI({
     apiKey:process.env.GOOGLE_GENAI_API_KEY
 })
-console.log("GENAI KEY =", process.env.GOOGLE_GENAI_API_KEY);
+
 
 
 
@@ -40,11 +39,7 @@ const interviewReportSchema = z.object({
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
 
 
-//     const prompt = `Generate an interview report for a candidate with the following details:
-//                         Resume: ${resume}
-//                         Self Description: ${selfDescription}
-//                         Job Description: ${jobDescription}
-// `
+
 const prompt = `
 You are an expert HR Recruiter, ATS Resume Evaluator and Technical Interviewer.
 
@@ -194,24 +189,6 @@ Do not return explanation.
 
 
 
-// async function generatePdfFromHtml(htmlContent) {
-//     const browser = await puppeteer.launch()
-//     const page = await browser.newPage();
-//     await page.setContent(htmlContent, { waitUntil: "networkidle0" })
-
-//     const pdfBuffer = await page.pdf({
-//         format: "A4", margin: {
-//             top: "20mm",
-//             bottom: "20mm",
-//             left: "15mm",
-//             right: "15mm"
-//         }
-//     })
-
-//     await browser.close()
-
-//     return pdfBuffer
-// }
 
 async function generatePdfFromHtml(htmlContent) {
 
