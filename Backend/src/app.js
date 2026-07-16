@@ -9,11 +9,11 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "https://interview-iq-1-ojzj.onrender.com"
-    ],
-    credentials: true,
+  origin: [
+    "http://localhost:5173",
+    "https://interview-iq-f.onrender.com"
+  ],
+  credentials: true,
 }));
 
 app.use(
