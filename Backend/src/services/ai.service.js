@@ -6,7 +6,6 @@ const puppeteer = require("puppeteer");
 const  ai = new GoogleGenAI({
     apiKey:process.env.GOOGLE_GENAI_API_KEY
 })
-//bekar
 console.log("GENAI KEY =", process.env.GOOGLE_GENAI_API_KEY);
 
 
