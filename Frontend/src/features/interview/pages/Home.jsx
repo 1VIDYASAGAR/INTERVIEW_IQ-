@@ -19,13 +19,29 @@ const Home = () => {
     const navigate = useNavigate()
     const { handleLogout, user } = useAuth()
 
+    // useEffect(() => {
+    //     const onClick = (e) => {
+    //         if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false)
+    //     }
+    //     document.addEventListener('mousedown', onClick)
+    //     return () => document.removeEventListener('mousedown', onClick)
+    // }, [])
+
     useEffect(() => {
-        const onClick = (e) => {
-            if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false)
-        }
-        document.addEventListener('mousedown', onClick)
-        return () => document.removeEventListener('mousedown', onClick)
-    }, [])
+        const handleOutsideClick = (e) => {
+            if (menuRef.current && !menuRef.current.contains(e.target)) {
+                setMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("click", handleOutsideClick);
+        document.addEventListener("touchstart", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("click", handleOutsideClick);
+            document.removeEventListener("touchstart", handleOutsideClick);
+        };
+    }, []);
 
     const logoutUser = async () => {
         try {
@@ -132,7 +148,11 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className="hb-profile__dd-divider" />
-                            <button onClick={logoutUser} className="hb-profile__logout">
+                            <button
+                                className="hb-profile__logout"
+                                onClick={logoutUser}
+                                onTouchStart={logoutUser}
+                            >
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                                     <polyline points="16 17 21 12 16 7" />
