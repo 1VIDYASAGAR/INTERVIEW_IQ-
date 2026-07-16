@@ -185,31 +185,104 @@
   cursor:default;
 }
 
-/* Mobile: dropdown screen se bahar na jaye, aur bada tap target */
-@media (max-width:480px){
-  .hb-profile__dropdown{
-    position:fixed;
-    top:64px;
-    right:12px;
-    left:12px;
-    width:auto;
-  }
-  .hb-profile__dropdown-inner{
-    width:100%;
-  }
-  .hb-profile__logout{
-    padding:14px 16px; /* bigger tap target for thumbs */
-    font-size:14px;
-  }
-  .hb-profile__chip{
-    padding:6px 10px 6px 6px;
-  }
-  .hb-profile__text{
-    max-width:110px;
-  }
-  .hb-profile__name, .hb-profile__email{
-    max-width:110px;
-  }
+
+
+
+
+
+/* remove/replace old .hb-profile__dropdown and add these */
+
+.hb-profile__backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0);
+  border:none;
+  padding:0;
+  margin:0;
+  z-index:99998; /* just under dropdown, escapes every stacking context */
+  cursor:default;
 }
+
+.hb-profile__dropdown{
+  position:fixed;                 /* KEY FIX: viewport-relative, never gets painted under hero/card */
+  top:var(--anchor-top, 70px);
+  right:var(--anchor-right, 16px);
+  width:280px;
+  max-width:calc(100vw - 24px);
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  transform:translateY(-6px);
+  transition:grid-template-rows .3s cubic-bezier(.4,0,.2,1),opacity .25s ease,transform .25s ease;
+  pointer-events:none;
+  z-index:99999;                  /* above literally everything on the page */
+}
+.hb-profile__dropdown.is-open{
+  grid-template-rows:1fr;
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.hb-profile__dropdown-inner{overflow:hidden;width:100%;}
+.hb-profile__dropdown .hb-profile__dropdown-inner > *{
+  background:#0e1526;width:100%;box-sizing:border-box;
+  border:1px solid var(--line);border-radius:8px;
+  box-shadow:0 20px 45px -14px rgba(0,0,0,.7);
+}
+.hb-profile__dd-head{display:flex;gap:12px;align-items:center;padding:12px;}
+.hb-avatar--lg{width:40px;height:40px;}
+.hb-profile__dd-name{margin:0;font-size:16px;font-weight:600;word-break:break-word;}
+.hb-profile__dd-email{margin:2px 0 0;font-size:12.5px;color:var(--muted);word-break:break-all;}
+.hb-profile__provider{display:inline-block;margin-top:6px;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--amber);background:rgba(99,102,241,.1);padding:2px 8px;border-radius:20px;}
+.hb-profile__dd-divider{height:1px;background:var(--line);margin:0 16px;}
+.hb-profile__logout{
+  display:flex;align-items:center;gap:8px;
+  width:calc(100% - 24px);margin:12px;
+  background:rgba(255,77,77,.1);border:1px solid rgba(255,77,77,.3);
+  color:#ff8f8f;padding:14px 16px;border-radius:6px;cursor:pointer;
+  font-size:14px;font-weight:600;transition:background .2s;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;      /* removes the ~300ms mobile tap delay/double-fire */
+}
+.hb-profile__logout:hover{background:rgba(255,77,77,.18);}
+.hb-profile__logout:active{background:rgba(255,77,77,.25);}
+
+/* header/chip mobile tightening */
+@media (max-width:480px){
+  .hb-header{flex-wrap:nowrap;gap:8px;}
+  .hb-brand__logo{width:110px;}
+  .hb-profile__chip{padding:5px 8px 5px 5px;gap:6px;}
+  .hb-profile__text{max-width:90px;}
+  .hb-profile__name{font-size:12px;max-width:90px;}
+  .hb-profile__email{font-size:10px;max-width:90px;}
+  .hb-avatar{width:30px;height:30px;}
+}
+
+// /* Mobile: dropdown screen se bahar na jaye, aur bada tap target */
+// @media (max-width:480px){
+//   .hb-profile__dropdown{
+//     position:fixed;
+//     top:64px;
+//     right:12px;
+//     left:12px;
+//     width:auto;
+//   }
+//   .hb-profile__dropdown-inner{
+//     width:100%;
+//   }
+//   .hb-profile__logout{
+//     padding:14px 16px; /* bigger tap target for thumbs */
+//     font-size:14px;
+//   }
+//   .hb-profile__chip{
+//     padding:6px 10px 6px 6px;
+//   }
+//   .hb-profile__text{
+//     max-width:110px;
+//   }
+//   .hb-profile__name, .hb-profile__email{
+//     max-width:110px;
+//   }
+// }
 
 
