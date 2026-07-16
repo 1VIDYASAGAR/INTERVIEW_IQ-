@@ -9,6 +9,8 @@ const  ai = new GoogleGenAI({
 console.log("GENAI KEY =", process.env.GOOGLE_GENAI_API_KEY);
 
 
+
+
 const interviewReportSchema = z.object({
     matchScore: z.number().describe("A score between 0 and 100 indicating how well the candidate's profile matches the job describe"),
     technicalQuestions: z.array(z.object({
@@ -173,7 +175,7 @@ Do not return explanation.
 `;
 
     const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+       model: "gemini-flash-lite-latest",
         contents: prompt,
         config: {
             responseMimeType: "application/json",
@@ -268,7 +270,7 @@ and Don't skip any skill related to job that they target.
                     
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-lite",
+     model: "gemini-flash-lite-latest",
         contents: prompt,
         config: {
             responseMimeType: "application/json",
