@@ -9,7 +9,7 @@ const Login = () => {
   const [typed, setTyped] = useState("");
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:3000/api/auth/google";
+    window.location.href = "https://interview-iq-ppv9.onrender.com/api/auth/google";
   };
 
   // cycles through a small "system check" ticker

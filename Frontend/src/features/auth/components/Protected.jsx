@@ -17,9 +17,6 @@ if (loading) {
         Loading...
       </h1>
 
-      <p className="loading-text">
-        Thanks for using..
-      </p>
     </main>
   );
 }
