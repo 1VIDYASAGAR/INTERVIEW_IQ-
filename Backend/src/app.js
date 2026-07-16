@@ -16,17 +16,17 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(
-  session({
-    secret: process.env.JWT_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: true,
-      sameSite: "none",
-    },
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.JWT_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       secure: true,
+//       sameSite: "none",
+//     },
+//   })
+// );
 
 // app.use(
 //   session({
@@ -37,7 +37,9 @@ app.use(
 // );
 
 app.use(passport.initialize());
-app.use(passport.session());
+
+// app.use(passport.session());
+
 
 
 //require all the routes here
