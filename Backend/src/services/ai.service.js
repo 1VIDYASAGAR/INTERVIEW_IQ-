@@ -4,6 +4,7 @@ const {zodToJsonSchema} = require("zod-to-json-schema")
 const pdfParse = require("pdf-parse")
 const puppeteer = require("puppeteer-core");
 const chromium = require("@sparticuz/chromium");
+console.log("Chromium Object =", chromium);
 const  ai = new GoogleGenAI({
     apiKey:process.env.GOOGLE_GENAI_API_KEY
 })
