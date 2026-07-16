@@ -43,14 +43,19 @@ const Home = () => {
         };
     }, []);
 
-    const logoutUser = async () => {
+    const logoutUser = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        alert("Logout Clicked");
+
         try {
-            await handleLogout()
-            navigate("/login")
+            await handleLogout();
+            navigate("/login");
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
-    }
+    };
 
     const handleGenerateReport = async () => {
         const resumeFile = resumeInputRef.current.files[0];
@@ -149,9 +154,9 @@ const Home = () => {
                             </div>
                             <div className="hb-profile__dd-divider" />
                             <button
+                                type="button"
                                 className="hb-profile__logout"
                                 onClick={logoutUser}
-                                onTouchStart={logoutUser}
                             >
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
