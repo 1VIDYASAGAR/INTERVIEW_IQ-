@@ -12,12 +12,21 @@ async function authUser(req,res,next){
         return res.status(401).json({message:"Token is invalid or expired"})
     }
 
-try{
-const decoded = jwt.verify(token,process.env.JWT_SECRET)
-req.user = decoded;
-next();
-} catch(err){
-    return res.status(401).json({message:"Unauthorized access"})
+try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    console.log("✅ Decoded Token:", decoded);
+
+    req.user = decoded;
+    next();
+
+} catch (err) {
+
+    console.log("❌ JWT ERROR:", err);
+
+    return res.status(401).json({
+        message: "Unauthorized access"
+    });
 }
 }
 
