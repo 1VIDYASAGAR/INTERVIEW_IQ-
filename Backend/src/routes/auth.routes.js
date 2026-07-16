@@ -47,7 +47,7 @@ authRouter.get(
 authRouter.get(
   "/google/callback",
   passport.authenticate("google", {
-   failureRedirect: "https://interview-iq-1-ojzj.onrender.com/login",
+  failureRedirect: "https://interview-iq-f.onrender.com/login",
     session: false,
   }),
   (req, res) => {
@@ -70,7 +70,7 @@ res.cookie("token", token, {
   maxAge: 24 * 60 * 60 * 1000,
 });
 
-   res.redirect("https://interview-iq-1-ojzj.onrender.com/");
+  res.redirect("https://interview-iq-f.onrender.com/");
   }
 );
 
